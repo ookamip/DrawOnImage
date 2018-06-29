@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.ookamisoft.drawonimage.DrawOnImageView
+            android:id="@+id/drawOnImageView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/test"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/revertButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="REVERT"
+            app:layout_constraintEnd_toStartOf="@+id/saveButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/drawOnImageView" />
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="SAVE"
+            app:layout_constraintEnd_toStartOf="@+id/eraserButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/revertButton"
+            app:layout_constraintTop_toTopOf="@id/revertButton" />
+
+        <Button
+            android:id="@+id/startActivityButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="ACTIVITY"
+            app:layout_constraintLeft_toLeftOf="@id/revertButton"
+            app:layout_constraintTop_toBottomOf="@id/revertButton" />
+
+        <Button
+            android:id="@+id/startActivityButtonWithFile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="ACTIVITY FILE"
+            app:layout_constraintLeft_toRightOf="@id/startActivityButton"
+            app:layout_constraintTop_toTopOf="@id/startActivityButton" />
+
+        <ToggleButton
+            android:id="@+id/eraserButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textOff="ERASER"
+            android:textOn="ERASER"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/saveButton"
+            app:layout_constraintTop_toTopOf="@id/revertButton" />
+
+        <android.support.constraint.Barrier
+            android:id="@+id/topButtonsBarrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="revertButton, saveButton, eraserButton, startActivityButton" />
+
+        <ImageView
+            android:id="@+id/savedImageView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/topButtonsBarrier" />
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.NestedScrollView>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/imageActionSave"
+        android:icon="@drawable/ic_menu_action_save"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/imageActionEraser"
+        android:checkable="true"
+        android:icon="@drawable/ic_menu_action_eraser"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/imageActionUndo"
+        android:icon="@drawable/ic_menu_action_undo"
+        app:showAsAction="ifRoom" />
+</menu>
