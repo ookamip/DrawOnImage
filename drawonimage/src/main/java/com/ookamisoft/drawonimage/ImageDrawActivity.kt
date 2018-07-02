@@ -1,6 +1,7 @@
 package com.ookamisoft.drawonimage
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
@@ -15,6 +16,12 @@ class ImageDrawActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_draw)
+
+        intent.extras.getString(ACTIVITY_TITLE_KEY, "").apply {
+            if (!isNullOrEmpty()) {
+                title = this
+            }
+        }
 
         val contentUri = intent.data
         val imageDrawFragment = fragmentCreator.createFragment(contentUri) { resultBitmap ->
@@ -36,5 +43,17 @@ class ImageDrawActivity : AppCompatActivity() {
         }
 
         supportFragmentManager.beginTransaction().replace(R.id.imageDrawFragmentHolder, imageDrawFragment).commit()
+    }
+
+    class Creator {
+        @JvmOverloads fun createDrawOnImageActivityIntent(context: Context, title: String? = null): Intent {
+            val intent = Intent(context, ImageDrawActivity::class.java)
+            intent.putExtra(ACTIVITY_TITLE_KEY, title)
+            return intent
+        }
+    }
+
+    companion object {
+        const val ACTIVITY_TITLE_KEY = "activity_title"
     }
 }
