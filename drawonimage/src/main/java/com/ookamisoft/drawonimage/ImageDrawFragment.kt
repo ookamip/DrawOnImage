@@ -11,6 +11,7 @@ class ImageDrawFragment : Fragment() {
 
     private var onBitmapSaveListener: ((savedFileUri: Bitmap) -> Unit)? = null
     private var imageSource: Uri? = null
+    private var useEraser = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +28,8 @@ class ImageDrawFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         inflater?.inflate(R.menu.fragment_image_draw, menu)
+        val eraserItem = menu?.findItem(R.id.imageActionEraser)
+        eraserItem?.isVisible = useEraser
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -54,10 +57,12 @@ class ImageDrawFragment : Fragment() {
     }
 
     class FragmentCreator {
-        fun createFragment(imageSource: Uri, onBitmapSaveListener: ((savedFileUri: Bitmap) -> Unit)? = null): ImageDrawFragment {
+        fun createFragment(imageSource: Uri, useEraser: Boolean = false,
+                           onBitmapSaveListener: ((savedFileUri: Bitmap) -> Unit)? = null): ImageDrawFragment {
             val fragment = ImageDrawFragment()
             fragment.onBitmapSaveListener = onBitmapSaveListener
             fragment.imageSource = imageSource
+            fragment.useEraser = useEraser
             return fragment
         }
     }
