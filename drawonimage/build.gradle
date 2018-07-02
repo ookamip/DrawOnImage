@@ -3,6 +3,10 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.github.dcendents.android-maven'
 
+version '-SNAPSHOT'
+group "com.github.ookamip"
+archivesBaseName = "DrawOnImage"
+
 android {
     compileSdkVersion compileSDKVersion
 
