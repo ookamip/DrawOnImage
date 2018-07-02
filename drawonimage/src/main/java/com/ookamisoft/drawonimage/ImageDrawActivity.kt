@@ -17,7 +17,7 @@ class ImageDrawActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_draw)
 
-        intent.extras.getString(ACTIVITY_TITLE_KEY, "").apply {
+        intent?.extras?.getString(ACTIVITY_TITLE_KEY, "").apply {
             if (!isNullOrEmpty()) {
                 title = this
             }
