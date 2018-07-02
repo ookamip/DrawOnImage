@@ -17,14 +17,16 @@ class ImageDrawActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_draw)
 
-        intent?.extras?.getString(ACTIVITY_TITLE_KEY, "").apply {
+        intent.extras?.getString(ACTIVITY_TITLE_KEY, "").apply {
             if (!isNullOrEmpty()) {
                 title = this
             }
         }
 
         val contentUri = intent.data
-        val imageDrawFragment = fragmentCreator.createFragment(contentUri) { resultBitmap ->
+        val useEraser = intent.extras?.getBoolean(USE_ERASER_KEY, false) ?: true
+
+        val imageDrawFragment = fragmentCreator.createFragment(contentUri, true) { resultBitmap ->
             val path = contentUri.path
             try {
                 val out = FileOutputStream(File(path))
@@ -46,14 +48,18 @@ class ImageDrawActivity : AppCompatActivity() {
     }
 
     class Creator {
-        @JvmOverloads fun createDrawOnImageActivityIntent(context: Context, title: String? = null): Intent {
+        @JvmOverloads
+        fun createDrawOnImageActivityIntent(context: Context, title: String? = null,
+                                            useErasers: Boolean = true): Intent {
             val intent = Intent(context, ImageDrawActivity::class.java)
             intent.putExtra(ACTIVITY_TITLE_KEY, title)
+            intent.putExtra(USE_ERASER_KEY, useErasers)
             return intent
         }
     }
 
     companion object {
         const val ACTIVITY_TITLE_KEY = "activity_title"
+        const val USE_ERASER_KEY = "use_eraser"
     }
 }
